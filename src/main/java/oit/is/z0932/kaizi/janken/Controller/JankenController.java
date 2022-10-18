@@ -1,5 +1,7 @@
 package oit.is.z0932.kaizi.janken.Controller;
 
+import java.security.Principal;
+
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,9 +23,10 @@ public class JankenController {
   // return "janken.html";
   // }
 
-  @PostMapping("/janken")
-  public String janken(@RequestParam String UserName, ModelMap model) {
-    model.addAttribute("UserName", UserName);
+  @GetMapping("/janken")
+  public String janken(Principal prin, ModelMap model) {
+    String loginUser = prin.getName(); // ログインユーザ情報
+    model.addAttribute("UserName", loginUser);
     return "janken.html";
   }
 
