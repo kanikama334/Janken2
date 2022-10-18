@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>SpringBoot Sample2-1</title>
+</head>
+
+<body>
+  <h1>JankenGame!</h1>
+  <div th:if="${UserName}">
+    Hi [[${UserName}]]
+  </div>
+  <a href="/JankenGame/グー">グー</a>
+  <a href="/JankenGame/チョキ">チョキ</a>
+  <a href="/JankenGame/パー">パー</a><br>
+  <a>あなたのて </a>[[${param1}]]<br>
+  <a>あいての手 Gu</a><br>
+  <a>結果 </a>[[${result}]]<br>
+
+</body>
+
+</html>
