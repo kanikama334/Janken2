@@ -38,13 +38,18 @@ public class Sample3AuthConfiguration {
         .password("$2y$10$bLnODnCXBwvC4YhNcR/tZeEDTomww5E.9pakE9nRvH45zD5te.HOi")
         .roles("USER")
         .build();
+    UserDetails honda = users
+        .username("ほんだ")
+        .password("$2y$10$j/F6jmjdZt7p/Pdm2jJ0oe7K8XM/lGQ7pSxnUwEKZ9aygXTmxF/I2")
+        .roles("USER")
+        .build();
     UserDetails admin = users
         .username("admin")
         .password("$2y$10$ngxCDmuVK1TaGchiYQfJ1OAKkd64IH6skGsNw1sLabrTICOHPxC0e")
         .roles("ADMIN")
         .build();
     // 生成したユーザをImMemoryUserDetailsManagerに渡す（いくつでも良い）
-    return new InMemoryUserDetailsManager(user1, user2, admin);
+    return new InMemoryUserDetailsManager(user1, user2, honda, admin);
   }
 
   /**
@@ -66,6 +71,11 @@ public class Sample3AuthConfiguration {
         .mvcMatchers("/janken/**").authenticated();
 
     http.logout().logoutSuccessUrl("/"); // ログアウト時は "http://localhost:8000/" に戻る
+
+    // h2-console
+    http.csrf().disable();
+    http.headers().frameOptions().disable();
+
     return http.build();
   }
 

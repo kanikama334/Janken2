@@ -1,13 +1,21 @@
 package oit.is.z0932.kaizi.janken.Controller;
 
 import java.security.Principal;
+import java.util.ArrayList;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.transaction.annotation.Transactional;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+
+import oit.is.z0932.kaizi.janken.model.Matches;
+import oit.is.z0932.kaizi.janken.model.MatchesMapper;
+import oit.is.z0932.kaizi.janken.model.UserMapper;
+import oit.is.z0932.kaizi.janken.model.Users;
 
 /**
  * Sample21Controller
@@ -22,10 +30,17 @@ public class JankenController {
   // model.addAttribute("name", name);
   // return "janken.html";
   // }
+  @Autowired
+  UserMapper usermapper;
+  MatchesMapper matchesmapper;
 
   @GetMapping("/janken")
   public String janken(Principal prin, ModelMap model) {
     String loginUser = prin.getName(); // ログインユーザ情報
+    ArrayList<Users> user3 = usermapper.selectAll();
+    ArrayList<Matches> matches = matchesmapper.selectAll();
+    model.addAttribute("users3", user3);
+    model.addAttribute("matches", matches);
     model.addAttribute("UserName", loginUser);
     return "janken.html";
   }
