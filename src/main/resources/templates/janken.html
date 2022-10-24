@@ -16,18 +16,15 @@
     <!--statはステータス変数
       https://www.ne.jp/asahi/hishidama/home/tech/java/spring/boot/thymeleaf/th_each.html
     -->
-  <div th:each="users,stat:${users3}">
-    <tr>
-      <td>・[[${users.name}]]</td>
-    </tr>
-  </div>
-  </p>
-
-  <p th:if="${matches}">
+    <li th:each="user : ${users3}">
+      <a th:href="@{/match(id=${user.id})}"> [[${user.name}]]</a>
+    </li>
+  <h1>試合結果</h1>
+  <p th:if="${matches3}">
     <!--statはステータス変数
           https://www.ne.jp/asahi/hishidama/home/tech/java/spring/boot/thymeleaf/th_each.html
         -->
-  <div th:each="matches,stat:${matches}">
+  <div th:each="matches,stat:${matches3}">
     <tr>
       <td>id:[[${matches.id}]]</td>
       <td>user1:[[${matches.user1}]]</td>
@@ -37,9 +34,6 @@
     </tr>
   </div>
   </p>
-  <a href="/JankenGame/グー">グー</a>
-  <a href="/JankenGame/チョキ">チョキ</a>
-  <a href="/JankenGame/パー">パー</a>
 
 </body>
 

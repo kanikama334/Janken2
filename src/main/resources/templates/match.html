@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <title>SpringBoot Sample2-1</title>
+</head>
+
+<body>
+  <h1>Match</h1>
+  <div th:if="${UserName}">
+    <h1>[[${UserName}]] VS [[${hogeName}]]</h1>
+  </div>
+  <a href="/fight?name=CPU&hand=グー">グー</a>
+  <a href="/fight?name=CPU&hand=チョキ">チョキ</a>
+  <a href="/fight?name=CPU&hand=パー">パー</a>
+  <a href="/janken">もどる</a>
+  <div th:if="${result}">
+    <a>あなたのて </a>[[${hand}]]<br>
+    <a>あいての手 Gu</a><br>
+    <a>結果 </a>[[${result}]]<br>
+  </div>
+</body>
+
+</html>

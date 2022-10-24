@@ -32,17 +32,54 @@ public class JankenController {
   // }
   @Autowired
   UserMapper usermapper;
+  @Autowired
   MatchesMapper matchesmapper;
 
   @GetMapping("/janken")
   public String janken(Principal prin, ModelMap model) {
     String loginUser = prin.getName(); // ログインユーザ情報
+    ArrayList<Matches> matches3 = matchesmapper.selectAll();
     ArrayList<Users> user3 = usermapper.selectAll();
-    ArrayList<Matches> matches = matchesmapper.selectAll();
     model.addAttribute("users3", user3);
-    model.addAttribute("matches", matches);
+    model.addAttribute("matches3", matches3);
     model.addAttribute("UserName", loginUser);
     return "janken.html";
+  }
+
+  @GetMapping("/match")
+  public String match(@RequestParam Integer id, Principal prin, ModelMap model) {
+    String loginUser = prin.getName(); // ログインユーザ情報
+    String hoge = usermapper.selectById(id);
+    model.addAttribute("UserName", loginUser);
+    model.addAttribute("hogeName", hoge);
+    return "match.html";
+  }
+
+  @GetMapping("/fight")
+  public String fight(@RequestParam String name, String hand, Principal prin, ModelMap model) {
+    String loginUser = prin.getName(); // ログインユーザ情報
+    int hoge = usermapper.selectByName(name);
+    int myId = usermapper.selectByName(loginUser);
+    Matches match = new Matches();
+    match.setUser1(myId);
+    match.setUser2(hoge);
+    match.setUser1Hand(hand);
+    match.setUser2Hand("グー");
+    String result = "";
+    if (hand.equals("グー")) {
+      result = "引き分け";
+    } else if (hand.equals("チョキ")) {
+      result = "You Lose";
+    } else if (hand.equals("パー")) {
+      result = "You Win";
+    } else {
+      result = hand;
+    }
+    matchesmapper.insertMatchInfo(match);
+    model.addAttribute("result", result);
+    model.addAttribute("UserName", loginUser);
+    model.addAttribute("hogeName", name);
+    return "match.html";
   }
 
   @GetMapping("/JankenGame/{param1}")
@@ -64,6 +101,7 @@ public class JankenController {
     return "jankenGame.html";
 
   }
+
   // /*
 
   // // @GetMapping("/janken")
