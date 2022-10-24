@@ -11,9 +11,18 @@
   <div th:if="${UserName}">
     Hi [[${UserName}]]
   </div>
-  <a href="/JankenGame/グー">グー</a>
-  <a href="/JankenGame/チョキ">チョキ</a>
-  <a href="/JankenGame/パー">パー</a>
+  <h1>エントリー</h1>
+  <p th:if="${users3}">
+    <!--statはステータス変数
+      https://www.ne.jp/asahi/hishidama/home/tech/java/spring/boot/thymeleaf/th_each.html
+    -->
+  <div th:each="users,stat:${users3}">
+    <tr>
+      <td>・[[${users.name}]]</td>
+    </tr>
+  </div>
+  </p>
+
 
 </body>
 
