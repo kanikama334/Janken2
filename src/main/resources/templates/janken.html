@@ -23,20 +23,7 @@
   </div>
   </p>
 
-  <p th:if="${matches}">
-    <!--statはステータス変数
-          https://www.ne.jp/asahi/hishidama/home/tech/java/spring/boot/thymeleaf/th_each.html
-        -->
-  <div th:each="matches,stat:${matches}">
-    <tr>
-      <td>id:[[${matches.id}]]</td>
-      <td>user1:[[${matches.user1}]]</td>
-      <td>user2:[[${matches.user2}]]</td>
-      <td>user1Hand:[[${matches.user1Hand}]]</td>
-      <td>user2Hand:[[${matches.user2Hand}]]</td>
-    </tr>
-  </div>
-  </p>
+
   <a href="/JankenGame/グー">グー</a>
   <a href="/JankenGame/チョキ">チョキ</a>
   <a href="/JankenGame/パー">パー</a>
