@@ -13,6 +13,12 @@ public interface UserMapper {
   @Select("SELECT * from users")
   ArrayList<Users> selectAll();
 
+  @Select("SELECT name from users where id = #{id}")
+  String selectById(int id);
+
+  @Select("SELECT id from users where name = #{name}")
+  int selectByName(String name);
+
   /**
    * #{userName}などはinsertの引数にあるChamberクラスのフィールドを表しています 引数に直接String
    * userNameなどと書いてもいけるはず
