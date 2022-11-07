@@ -79,7 +79,7 @@ public class JankenController {
     model.addAttribute("result", result);
     model.addAttribute("UserName", loginUser);
     model.addAttribute("hogeName", name);
-    return "match.html";
+    return "wait.html";
   }
 
   @GetMapping("/JankenGame/{param1}")
